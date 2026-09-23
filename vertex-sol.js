@@ -1,4 +1,4 @@
-﻿  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.__lang='en'; try{ window.__lang=localStorage.getItem('vlang_hn')||'en'; }catch(e){}
   document.getElementById('year').textContent = new Date().getFullYear();
   var mb=document.getElementById('menuBtn'), mm=document.getElementById('mobileMenu');
@@ -28,9 +28,9 @@
   // hero slideshow + synced text + parallax
   (function(){
     var HERO=[
-      {tag:{en:'01 / Aluzinc roofing',es:'01 / Techos de aluzinc'}, word:{en:'Roofing.',es:'Techos.'}, sub:{en:'Aluzinc and metal roofs installed and repaired across Honduras â€” sealed tight, no leaks.',es:'Techos de aluzinc y lÃ¡mina instalados y reparados en toda Honduras â€” bien sellados, sin goteras.'}},
-      {tag:{en:'02 / Flooring & tile',es:'02 / Pisos y cerÃ¡mica'}, word:{en:'Flooring.',es:'Pisos.'}, sub:{en:'Ceramic, porcelain and flooring laid level and clean â€” floors that last for years.',es:'CerÃ¡mica, porcelanato y pisos colocados a nivel y parejos â€” pisos que duran aÃ±os.'}},
-      {tag:{en:'03 / Plumbing',es:'03 / FontanerÃ­a'}, word:{en:'Plumbing.',es:'FontanerÃ­a.'}, sub:{en:'Water and drainage installs and repairs â€” a straight diagnosis and work that holds.',es:'Instalaciones y reparaciones de agua y drenaje â€” diagnÃ³stico claro y trabajo que aguanta.'}}
+      {tag:{en:'01 / Aluzinc roofing',es:'01 / Techos de aluzinc'}, word:{en:'Roofing.',es:'Techos.'}, sub:{en:'Aluzinc and metal roofs installed and repaired across Honduras — sealed tight, no leaks.',es:'Techos de aluzinc y lámina instalados y reparados en toda Honduras — bien sellados, sin goteras.'}},
+      {tag:{en:'02 / Flooring & tile',es:'02 / Pisos y cerámica'}, word:{en:'Flooring.',es:'Pisos.'}, sub:{en:'Ceramic, porcelain and flooring laid level and clean — floors that last for years.',es:'Cerámica, porcelanato y pisos colocados a nivel y parejos — pisos que duran años.'}},
+      {tag:{en:'03 / Plumbing',es:'03 / Fontanería'}, word:{en:'Plumbing.',es:'Fontanería.'}, sub:{en:'Water and drainage installs and repairs — a straight diagnosis and work that holds.',es:'Instalaciones y reparaciones de agua y drenaje — diagnóstico claro y trabajo que aguanta.'}}
     ];
     var N=HERO.length;
     var dotsWrap=document.getElementById('heroDots'), i=0;
@@ -73,11 +73,11 @@
   // service-area map (Honduras)
   (function(){
     if(!window.L||!document.getElementById('deMap'))return;
-    var towns=[['Tegucigalpa',14.072,-87.192],['San Pedro Sula',15.505,-88.025],['La Ceiba',15.759,-86.782],['Choloma',15.614,-87.953],['El Progreso',15.400,-87.803],['Comayagua',14.460,-87.637],['Puerto CortÃ©s',15.826,-87.930],['Villanueva',15.318,-88.000],['Choluteca',13.302,-87.191],['DanlÃ­',14.033,-86.583],['Juticalpa',14.657,-86.219]];
+    var towns=[['Tegucigalpa',14.072,-87.192],['San Pedro Sula',15.505,-88.025],['La Ceiba',15.759,-86.782],['Choloma',15.614,-87.953],['El Progreso',15.400,-87.803],['Comayagua',14.460,-87.637],['Puerto Cortés',15.826,-87.930],['Villanueva',15.318,-88.000],['Choluteca',13.302,-87.191],['Danlí',14.033,-86.583],['Juticalpa',14.657,-86.219]];
     var map=L.map('deMap',{scrollWheelZoom:false,attributionControl:true}).setView([14.9,-86.9],7);
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,crossOrigin:true,attribution:'Tiles &copy; Esri'}).addTo(map);
     var pts=[];
-    towns.forEach(function(t){var m=L.circleMarker([t[1],t[2]],{radius:7,color:'#8A4023',weight:2,fillColor:'#C86B45',fillOpacity:1}).addTo(map);m.bindTooltip(t[0],{direction:'top',offset:[0,-4]});m.bindPopup('<b style="font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.03em">'+t[0]+'</b><br><span style="color:#8A4023;font-size:.8rem">Vertex NTA Â· Honduras</span>');pts.push([t[1],t[2]]);});
+    towns.forEach(function(t){var m=L.circleMarker([t[1],t[2]],{radius:7,color:'#8A4023',weight:2,fillColor:'#C86B45',fillOpacity:1}).addTo(map);m.bindTooltip(t[0],{direction:'top',offset:[0,-4]});m.bindPopup('<b style="font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.03em">'+t[0]+'</b><br><span style="color:#8A4023;font-size:.8rem">Vertex NTA · Honduras</span>');pts.push([t[1],t[2]]);});
     function refresh(){try{map.invalidateSize(false);if(pts.length)map.fitBounds(pts,{padding:[30,30]});}catch(e){}}
     map.whenReady(function(){requestAnimationFrame(refresh);});
     [200,700,1600].forEach(function(d){setTimeout(refresh,d);});
@@ -132,9 +132,9 @@
       var name=((vf.querySelector('[name=name]')||{}).value||'').trim();
       var phone=((vf.querySelector('[name=phone]')||{}).value||'').trim();
       function say(en,es,col){if(note){note.textContent=t(en,es);note.style.color=col||'';}}
-      if(!name||!phone){say('Please add your name and phone.','Agrega tu nombre y telÃ©fono.','#AD5533');return;}
+      if(!name||!phone){say('Please add your name and phone.','Agrega tu nombre y teléfono.','#AD5533');return;}
       var nf=nativeForm();
-      if(!nf){say('Could not send right now â€” please call us.','No se pudo enviar â€” por favor llÃ¡manos.','#AD5533');return;}
+      if(!nf){say('Could not send right now — please call us.','No se pudo enviar — por favor llámanos.','#AD5533');return;}
       function setv(n,val){var el=nf.querySelector('[name="'+n+'"]');if(el)el.value=val;}
       var proj=(vf.querySelector('[name=project]')||{}).value||'';
       var det=(vf.querySelector('[name=details]')||{}).value||'';
@@ -144,8 +144,8 @@
       var wrap=nf.closest('.w-form')||nf.parentNode, done=false;
       function finish(ok){ if(done)return; done=true; if(obs)obs.disconnect();
         if(btn){btn.disabled=false;btn.textContent=t('Send request','Enviar solicitud');}
-        if(ok){say('Thanks! Weâ€™ll be in touch shortly.','Â¡Gracias! Te contactamos en breve.','#1c7a3f');vf.reset();}
-        else{say('Something went wrong â€” please call us.','Algo fallÃ³ â€” por favor llÃ¡manos.','#AD5533');}
+        if(ok){say('Thanks! We’ll be in touch shortly.','¡Gracias! Te contactamos en breve.','#1c7a3f');vf.reset();}
+        else{say('Something went wrong — please call us.','Algo falló — por favor llámanos.','#AD5533');}
       }
       var obs=new MutationObserver(function(){
         var d=wrap.querySelector('.w-form-done'), fl=wrap.querySelector('.w-form-fail');
@@ -153,7 +153,7 @@
         else if(fl&&getComputedStyle(fl).display!=='none')finish(false);
       });
       obs.observe(wrap,{attributes:true,childList:true,subtree:true,attributeFilter:['style']});
-      if(btn){btn.disabled=true;btn.textContent=t('Sendingâ€¦','Enviandoâ€¦');}
+      if(btn){btn.disabled=true;btn.textContent=t('Sending…','Enviando…');}
       setTimeout(function(){finish(true);},6000);
       try{ if(nf.requestSubmit)nf.requestSubmit(); else nf.submit(); }catch(err){ var b=nf.querySelector('[type=submit]'); if(b)b.click(); }
     });
