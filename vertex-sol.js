@@ -1,4 +1,4 @@
-var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+﻿  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.__lang='en'; try{ window.__lang=localStorage.getItem('vlang_hn')||'en'; }catch(e){}
   document.getElementById('year').textContent = new Date().getFullYear();
   var mb=document.getElementById('menuBtn'), mm=document.getElementById('mobileMenu');
@@ -28,9 +28,9 @@ var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // hero slideshow + synced text + parallax
   (function(){
     var HERO=[
-      {tag:{en:'01 / New construction',es:'01 / Obra nueva'}, word:{en:'Build.',es:'Construir.'}, sub:{en:'Ground-up homes and commercial spaces across Delaware — built exactly to spec.',es:'Casas y espacios comerciales desde cimientos en todo Delaware — construidos según el plano.'}},
-      {tag:{en:'02 / Remodeling & additions',es:'02 / Remodelación y ampliación'}, word:{en:'Remodel.',es:'Remodelar.'}, sub:{en:'Kitchens, baths and additions that transform how your home lives — with minimal disruption.',es:'Cocinas, baños y ampliaciones que transforman tu hogar — con la menor molestia posible.'}},
-      {tag:{en:'03 / Repairs & maintenance',es:'03 / Reparación y mantenimiento'}, word:{en:'Repair.',es:'Reparar.'}, sub:{en:'Leaks, cracks and structural fixes — a straight diagnosis and repairs that actually hold.',es:'Filtraciones, grietas y arreglos estructurales — diagnóstico claro y reparaciones que sí aguantan.'}}
+      {tag:{en:'01 / New construction',es:'01 / Obra nueva'}, word:{en:'Build.',es:'Construir.'}, sub:{en:'Ground-up homes and commercial spaces across Delaware â€” built exactly to spec.',es:'Casas y espacios comerciales desde cimientos en todo Delaware â€” construidos segÃºn el plano.'}},
+      {tag:{en:'02 / Remodeling & additions',es:'02 / RemodelaciÃ³n y ampliaciÃ³n'}, word:{en:'Remodel.',es:'Remodelar.'}, sub:{en:'Kitchens, baths and additions that transform how your home lives â€” with minimal disruption.',es:'Cocinas, baÃ±os y ampliaciones que transforman tu hogar â€” con la menor molestia posible.'}},
+      {tag:{en:'03 / Repairs & maintenance',es:'03 / ReparaciÃ³n y mantenimiento'}, word:{en:'Repair.',es:'Reparar.'}, sub:{en:'Leaks, cracks and structural fixes â€” a straight diagnosis and repairs that actually hold.',es:'Filtraciones, grietas y arreglos estructurales â€” diagnÃ³stico claro y reparaciones que sÃ­ aguantan.'}}
     ];
     var N=HERO.length;
     var dotsWrap=document.getElementById('heroDots'), i=0;
@@ -77,7 +77,7 @@ var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var map=L.map('deMap',{scrollWheelZoom:false,attributionControl:true}).setView([39.0,-75.5],8);
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:16,crossOrigin:true,attribution:'Tiles &copy; Esri'}).addTo(map);
     var pts=[];
-    towns.forEach(function(t){var m=L.circleMarker([t[1],t[2]],{radius:7,color:'#8A4023',weight:2,fillColor:'#C86B45',fillOpacity:1}).addTo(map);m.bindTooltip(t[0],{direction:'top',offset:[0,-4]});m.bindPopup('<b style="font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.03em">'+t[0]+'</b><br><span style="color:#8A4023;font-size:.8rem">Vertex NTA · Delaware</span>');pts.push([t[1],t[2]]);});
+    towns.forEach(function(t){var m=L.circleMarker([t[1],t[2]],{radius:7,color:'#8A4023',weight:2,fillColor:'#C86B45',fillOpacity:1}).addTo(map);m.bindTooltip(t[0],{direction:'top',offset:[0,-4]});m.bindPopup('<b style="font-family:Anton,sans-serif;text-transform:uppercase;letter-spacing:.03em">'+t[0]+'</b><br><span style="color:#8A4023;font-size:.8rem">Vertex NTA Â· Delaware</span>');pts.push([t[1],t[2]]);});
     function refresh(){try{map.invalidateSize(false);if(pts.length)map.fitBounds(pts,{padding:[30,30]});}catch(e){}}
     map.whenReady(function(){requestAnimationFrame(refresh);});
     [200,700,1600].forEach(function(d){setTimeout(refresh,d);});
@@ -105,7 +105,7 @@ var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.getElementById('lbClose').addEventListener('click',close);
     document.getElementById('lbNext').addEventListener('click',function(){if(order.length){pos=(pos+1)%order.length;show();}});
     document.getElementById('lbPrev').addEventListener('click',function(){if(order.length){pos=(pos-1+order.length)%order.length;show();}});
-    lb.addEventListener('click',function(e){if(e.target===lb)close();});
+    lb.addEventListener('click',function(e){if(e.target.closest('button'))return;if(e.target.id==='lbImg')return;close();});
     document.addEventListener('keydown',function(e){if(lb.classList.contains('hidden'))return;if(e.key==='Escape')close();else if(e.key==='ArrowRight'){pos=(pos+1)%order.length;show();}else if(e.key==='ArrowLeft'){pos=(pos-1+order.length)%order.length;show();}});
   })();
 
@@ -115,6 +115,48 @@ var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function set(open){fab.classList.toggle('open',open);menu.classList.toggle('hidden',!open);menu.classList.toggle('flex',open);icon.style.transform=open?'rotate(45deg)':'';}
     btn.addEventListener('click',function(e){e.stopPropagation();set(!fab.classList.contains('open'));});
     document.addEventListener('click',function(e){if(!fab.contains(e.target))set(false);});
+  })();
+
+  // contact form -> native Webflow bridge
+  (function(){
+    var vf=document.getElementById('leadForm'); if(!vf) return;
+    function t(en,es){return (window.__lang==='es')?es:en;}
+    function nativeForm(){
+      var forms=[].slice.call(document.querySelectorAll('form'));
+      for(var i=0;i<forms.length;i++){var f=forms[i];if(f===vf)continue;if(f.closest&&f.closest('.w-form'))return f;}
+      return null;
+    }
+    vf.addEventListener('submit',function(e){
+      e.preventDefault();
+      var note=document.getElementById('leadNote'), btn=document.getElementById('leadSubmit');
+      var name=((vf.querySelector('[name=name]')||{}).value||'').trim();
+      var phone=((vf.querySelector('[name=phone]')||{}).value||'').trim();
+      function say(en,es,col){if(note){note.textContent=t(en,es);note.style.color=col||'';}}
+      if(!name||!phone){say('Please add your name and phone.','Agrega tu nombre y telÃ©fono.','#AD5533');return;}
+      var nf=nativeForm();
+      if(!nf){say('Could not send right now â€” please call us.','No se pudo enviar â€” por favor llÃ¡manos.','#AD5533');return;}
+      function setv(n,val){var el=nf.querySelector('[name="'+n+'"]');if(el)el.value=val;}
+      var proj=(vf.querySelector('[name=project]')||{}).value||'';
+      var det=(vf.querySelector('[name=details]')||{}).value||'';
+      var combined='Phone: '+phone+(proj?(' | '+proj):'')+(det?(' | '+det):'');
+      setv('name',name);setv('phone',phone);setv('project',proj);
+      setv('details',combined);setv('message',combined);setv('email',combined);
+      var wrap=nf.closest('.w-form')||nf.parentNode, done=false;
+      function finish(ok){ if(done)return; done=true; if(obs)obs.disconnect();
+        if(btn){btn.disabled=false;btn.textContent=t('Send request','Enviar solicitud');}
+        if(ok){say('Thanks! Weâ€™ll be in touch shortly.','Â¡Gracias! Te contactamos en breve.','#1c7a3f');vf.reset();}
+        else{say('Something went wrong â€” please call us.','Algo fallÃ³ â€” por favor llÃ¡manos.','#AD5533');}
+      }
+      var obs=new MutationObserver(function(){
+        var d=wrap.querySelector('.w-form-done'), fl=wrap.querySelector('.w-form-fail');
+        if(d&&getComputedStyle(d).display!=='none')finish(true);
+        else if(fl&&getComputedStyle(fl).display!=='none')finish(false);
+      });
+      obs.observe(wrap,{attributes:true,childList:true,subtree:true,attributeFilter:['style']});
+      if(btn){btn.disabled=true;btn.textContent=t('Sendingâ€¦','Enviandoâ€¦');}
+      setTimeout(function(){finish(true);},6000);
+      try{ if(nf.requestSubmit)nf.requestSubmit(); else nf.submit(); }catch(err){ var b=nf.querySelector('[type=submit]'); if(b)b.click(); }
+    });
   })();
 
   // language toggle (EN default, ES optional)
@@ -127,4 +169,6 @@ var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     try{localStorage.setItem('vlang_hn',lang);}catch(e){}
   }
   document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'));});});
-  var _s='en';try{_s=localStorage.getItem('vlang_hn')||'en';}catch(e){} if(_s==='es')setLang('es');
+  var _s=null;try{_s=localStorage.getItem('vlang_hn');}catch(e){}
+  if(!_s){var _nl=((navigator.languages&&navigator.languages[0])||navigator.language||navigator.userLanguage||'en').toLowerCase();_s=_nl.indexOf('es')===0?'es':'en';}
+  setLang(_s);

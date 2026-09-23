@@ -39,12 +39,17 @@ html{scroll-behavior:smooth}
   .btn-lift:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(173,85,51,.6)}
   .zoomcard img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
   .zoomcard:hover img{transform:scale(1.06)}
+  .plate{position:relative;padding:10px;background:#EFEBE3;box-shadow:0 1px 0 #DAD4C8, 14px 14px 0 -2px rgba(173,85,51,.14), 0 22px 48px -20px rgba(16,20,26,.55);transition:box-shadow .35s ease, transform .35s ease}
+  .plate::before{content:"";position:absolute;inset:10px;border:1px solid rgba(173,85,51,.55);pointer-events:none;z-index:3}
+  .plate::after{content:attr(data-fig);position:absolute;bottom:14px;left:14px;z-index:4;font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;color:#EFEBE3;background:rgba(16,20,26,.82);padding:3px 8px;pointer-events:none}
+  .plate:hover{transform:translateY(-3px);box-shadow:0 1px 0 #DAD4C8, 18px 18px 0 -2px rgba(173,85,51,.20), 0 30px 60px -22px rgba(16,20,26,.6)}
+  @media (prefers-reduced-motion: reduce){.plate{transition:none}.plate:hover{transform:none}}
   .gf{font-family:"IBM Plex Mono",monospace;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(255,255,255,.2);color:#A9B2BC;transition:.2s;cursor:pointer}
   .gf:hover{color:#EFEBE3;border-color:#AD5533}
   .gf.on{background:#AD5533;color:#fff;border-color:#AD5533}
   .gitem{transition:opacity .35s ease, transform .35s ease}
   .gitem.hide{display:none}
-  .lb-btn{position:absolute;background:rgba(239,235,227,.08);color:#EFEBE3;border:1px solid rgba(239,235,227,.25);height:48px;width:48px;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .lb-btn{position:absolute;z-index:10;background:rgba(239,235,227,.08);color:#EFEBE3;border:1px solid rgba(239,235,227,.25);height:48px;width:48px;display:flex;align-items:center;justify-content:center;transition:.2s}
   .lb-btn:hover{background:#AD5533;border-color:#AD5533}
   .fab-item{display:flex;align-items:center;gap:10px;padding:11px 16px;color:#fff;font-weight:600;font-size:.9rem;box-shadow:0 10px 26px -8px rgba(0,0,0,.5);opacity:0;transform:translateY(10px);transition:.28s}
   #fab.open .fab-item{opacity:1;transform:none}
